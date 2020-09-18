@@ -27,8 +27,40 @@ Consists in defining:
  - A common language between technical and business (called Ubiquitous Language) so we avoid misunderstandings when defining
 actions, use cases, etc.
  - Business rules applied to solve the current problem (this is called the Domain)
- - Bounded Contexts: it´s a logical limit defining an independent part of the domain. A BC has its own rules, entities, actions... 
+ - Bounded Contexts: it's a logical limit defining an independent part of the domain. A BC has its own rules, entities, actions... 
  - Context map, to define the relationships between the different bounded contexts 
 
-
 ##Tactical
+Tactical DDD is when you define your domain models with more precision. The tactical patterns are applied within a single bounded context. For example, in a microservices architecture, we are particularly interested in the entity and aggregate patterns.
+- Entities
+    - They are mutable
+    - The way of checking his uniqueness is through an Id field
+    - They have no logic
+    - Example: A database entity
+- Value Objects
+    - They are in-mutable
+    - The way of checking his uniqueness is through the whole object structure
+    - They have logic (with no side effects)
+    - They expose an "API" beyond getters
+    - All those properties build a non anemic Object
+    - Example: A Currency class
+- Aggregates
+    - Define a limit in one or more entities, but the basic rule is one entity per aggregate
+    - The purpose of an aggregate is to model transactional invariants.
+    - The aggregate is created, retrieved and stored as a whole.
+    - The aggregate is always in a consistent state.
+    - The aggregate is owned by an entity called the aggregate root, whose ID is used to identify the aggregate itself.
+    - Example: Customers create orders, orders contain products, products have suppliers, and so on
+    
+- Repositories
+    - Domain oriented interfaces to retrieve/persist data
+    - Mostly they are commonly used as an abstraction layer over a database
+    - In fact also a client which is retrieving info from disk or an external API, also can follow this pattern
+    
+- Domain and Application Services
+- Domain Events
+
+
+## Resources
+- https://docs.microsoft.com/en-us/azure/architecture/microservices/model/tactical-ddd#:~:text=Tactical%20DDD%20is%20when%20you,the%20entity%20and%20aggregate%20patterns.
+- https://vaadin.com/learn/tutorials/ddd/tactical_domain_driven_design
