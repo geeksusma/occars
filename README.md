@@ -57,7 +57,19 @@ Tactical DDD is when you define your domain models with more precision. The tact
     - Mostly they are commonly used as an abstraction layer over a database
     - In fact also a client which is retrieving info from disk or an external API, also can follow this pattern
     
-- Domain and Application Services
+- Domain services
+    - They are stateless
+    - They are highly cohesive (meaning they are specialized in doing one thing and one thing only)
+    - They contain business logic that does not naturally fit elsewhere
+    - They can interact with other domain services and to some extent with repositories
+    - They can publish domain events
+    - An example of Domain service would implement the logic of checking if the costumer is able to request a car / journey
+
+- Application Services
+    - Don´t have any business logic, acts as a proxy between the domain model and the "rest of the world"
+    - The application service is responsible for handling transactions, ensuring system security, looking up the proper aggregates, invoking methods on them and saving the changes back to the database
+    - An example of application service could be a REST controller that links to our domain logic
+
 - Domain Events
 
 
